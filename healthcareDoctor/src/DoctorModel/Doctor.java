@@ -18,7 +18,7 @@ public class Doctor {
 		try
 		{
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/newdb1", "root", ""); 
+			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/newdb", "root", ""); 
 			System.out.print("Successfully connected"); 
 			
 			
@@ -86,7 +86,7 @@ public class Doctor {
 			
 			PreparedStatement prepareStmt=connection.prepareStatement(query);
 			
-			prepareStmt.setInt(1, Integer.parseInt(docNic));
+			prepareStmt.setString(1,docNic);
 			prepareStmt.execute();
 			connection.close();
 			
@@ -99,7 +99,7 @@ public class Doctor {
 		}
 		return output;
 	}
-	public String updateSession(String nic,String name,String hospital,String date,String timee,String timee2,String roomno)
+	public String updateSession(String date,String nic,String name,String hospital,String timee,String timee2,String roomno)
 	{
 		String output="";
 		
@@ -153,15 +153,18 @@ public class Doctor {
 				return "error while connecting to the database for reading";
 			}
 			
-			output = "<table border=\"1\"><tr><th>Date</th>"
+			output = "<table class=\"table\"><tr><th>Date</th>"
 					 +"<th>Doctor NIC</th>"
 					 +"<th>Doctor Name</th>"
 					 + "<th>Hospital</th>"
 					 +"<th>Start Time</th>"
 					 +"<th>End Time</th>"
-					 +"<th>Room number</th></tr>";
+					 +"<th>Room number</th>"
+					 +"<th>Update</th>"
+					 +"<th>Delete</th>"+"</tr>";
 					 //+"<th>hospital</th></tr>";
 					// + "<th>Update</th><th>Remove</th></tr>"; 
+			
 			String  query="select * from doctor_portal order by session_id DESC ";
 			Statement stmtStatement=con.createStatement();
 			ResultSet rs=stmtStatement.executeQuery(query);
@@ -176,7 +179,7 @@ public class Doctor {
 				String etime=rs.getString("time2");
 				String roomno=Integer.toString(rs.getInt("room_no"));
 				
-				
+			
 				output += "<tr><td>" + datee + "</td>"; 
 				output += "<td>" + nic + "</td>"; 
 				output += "<td>" + name + "</td>"; 
@@ -184,6 +187,20 @@ public class Doctor {
 				output += "<td>" + stime + "</td>"; 
 				output += "<td>" + etime + "</td>"; 
 				output += "<td>" + roomno + "</td>"; 
+				output += "<td><input name=\"btnUpdate\" type=\"button\" value=\"Update\" class=\"btnUpdate btn btn-secondary\"></td>";	
+				output += "<td><form method=\"post\" action=\"items.jsp\">"
+				 +"<input name=\"btnRemove\" type=\"submit\" value=\"Remove\" class=\"btn btn-danger\">"
+				 +"<input name=\"hidItemIDDelete\" type=\"hidden\" value=\"" + nic + "\">" + "</form></td></tr>"; 
+				
+				//-------------------------------------------------------
+				
+			
+				
+				
+				
+				
+				
+				
 				
 				
 			}

@@ -4,7 +4,7 @@
   <artifactId>healthcareDoctor</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
-  <build>
+ <build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
 			<plugin>

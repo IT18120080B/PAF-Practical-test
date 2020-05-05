@@ -42,6 +42,7 @@ public class DoctorService {
 		@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 		@Produces(MediaType.TEXT_PLAIN)
 		public String insertSession(@FormParam("nic") String nic,
+		@FormParam("name") String name,
 		 @FormParam("specialization") String Specialization,
 		 @FormParam("hospital") String hospital,
 		 @FormParam("room") String room,
@@ -50,7 +51,7 @@ public class DoctorService {
 		 @FormParam("time2") String time2)
 		 
 		{
-		 String output = docObj.addSession(nic,Specialization,hospital,room,datee,time,time2);
+		 String output = docObj.addSession(nic,name,Specialization,hospital,room,datee,time,time2);
 		return output;
 		}
 		
@@ -65,13 +66,14 @@ public class DoctorService {
 		 JsonObject docObject = new JsonParser().parse(docData).getAsJsonObject();
 		//Read the values from the JSON object
 		 String nic = docObject.get("nic").getAsString();
+		 String name = docObject.get("name").getAsString();
 		 String hospital = docObject.get("hospital").getAsString();
 		 String datee = docObject.get("datee").getAsString();
 		 String time = docObject.get("time").getAsString();
 		 String time2 = docObject.get("time2").getAsString();
 		 String roomno = docObject.get("roomno").getAsString();
 		 
-		 String output = docObj.updateSession(nic,hospital,datee,time,time2,roomno);
+		 String output = docObj.updateSession(nic,name,hospital,datee,time,time2,roomno);
 		return output;
 		}
 		
