@@ -111,7 +111,7 @@ public class Doctor {
 			}
 			
 			String query="UPDATE doctor_portal SET date=?,doc_hospital=?,time=?,time2=?,room_no=? "
-					+ "where doc_nic=? ";
+					+ "where doc_nic=?";
 					
 					PreparedStatement pStatement=connection.prepareStatement(query);
 					
@@ -152,10 +152,11 @@ public class Doctor {
 			{
 				return "error while connecting to the database for reading";
 			}
-			
-			output = "<table class=\"table\"><tr><th>Date</th>"
+//			output += "<<td><input id=\"hidItemIDUpdate\" name=\"hidItemIDUpdate\" type=\"hidden\" value=\"" + nic + "\">" + Name + "</td>"; 
+			output = "<table class=\"table\"><tr><th></th><th>Date</th>"					
 					 +"<th>Doctor NIC</th>"
 					 +"<th>Doctor Name</th>"
+					 +"<th>Specialization</th>"
 					 + "<th>Hospital</th>"
 					 +"<th>Start Time</th>"
 					 +"<th>End Time</th>"
@@ -163,32 +164,39 @@ public class Doctor {
 					 +"<th>Update</th>"
 					 +"<th>Delete</th>"+"</tr>";
 					 //+"<th>hospital</th></tr>";
-					// + "<th>Update</th><th>Remove</th></tr>"; 
+					// + "<th>Update</th><th>Remove</th></tr>"; 	
 			
 			String  query="select * from doctor_portal order by session_id DESC ";
 			Statement stmtStatement=con.createStatement();
 			ResultSet rs=stmtStatement.executeQuery(query);
+			
 			
 			while (rs.next())
 			{
 				String datee=rs.getString("date");
 				String nic=rs.getString("doc_nic");
 				String name=rs.getString("doc_name");
+				String Specialization=rs.getString("doc_specialization");
 				String hospital=rs.getString("doc_hospital");
 				String stime=rs.getString("time");
 				String etime=rs.getString("time2");
 				String roomno=Integer.toString(rs.getInt("room_no"));
 				
+				
+				
 			
-				output += "<tr><td>" + datee + "</td>"; 
+				
+				output += "<tr><td><input id=\"hidItemIDUpdate\" name=\"hidItemIDUpdate\" type=\"hidden\" value=\"" + nic + "\"></td>";
+				output += "<td>" + datee + "</td>";
 				output += "<td>" + nic + "</td>"; 
 				output += "<td>" + name + "</td>"; 
+				output += "<td>" + Specialization + "</td>"; 
 				output += "<td>" + hospital + "</td>"; 
 				output += "<td>" + stime + "</td>"; 
 				output += "<td>" + etime + "</td>"; 
 				output += "<td>" + roomno + "</td>"; 
 				output += "<td><input name=\"btnUpdate\" type=\"button\" value=\"Update\" class=\"btnUpdate btn btn-secondary\"></td>";	
-				output += "<td><form method=\"post\" action=\"items.jsp\">"
+				output += "<td><form method=\"post\" action=\"Doctor.jsp\">"
 				 +"<input name=\"btnRemove\" type=\"submit\" value=\"Remove\" class=\"btn btn-danger\">"
 				 +"<input name=\"hidItemIDDelete\" type=\"hidden\" value=\"" + nic + "\">" + "</form></td></tr>"; 
 				
