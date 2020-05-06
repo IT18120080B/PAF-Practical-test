@@ -9,8 +9,8 @@
 <title>Doctors' Portal</title>
 <link href="myStyle.css" rel="stylesheet" />
 <link rel="stylesheet" href="Views/bootstrap.min.css">
-<script src="jquery-3.5.0.min.js"></script>
-<script src="Doctor1.js"></script>
+<script src="Components/jquery-3.5.0.min.js"></script>
+<script src="Components/Doctor1.js"></script>
 
 </head>
 <body>
@@ -31,47 +31,45 @@
 				Doctor NIC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input id="docNic"
 					type="text" class="form-control" name="docNic"> <br>
 
-				Doctor Doctor Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="text" id="docName" class="form-control" name="docName">
-				<br>
+				Doctor Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text"
+					id="docName" class="form-control" name="docName"> <br>
 				Doctor Specialization&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
 					type="text" id="specialization" class="form-control"
-					name="specialization"> <br>
-				Hospital &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input name="Hosptial"
-					id="Hospital" class="form-control"> <br>
-				Room No&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input name="Room_No"
+					name="specialization"> <br> Hospital
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input name="Hosptial"
+					id="Hospital" class="form-control"> <br> Room
+				No&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input name="Room_No"
 					id="Room_No" class="form-control"> <br>
 				Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="date"
 					name="datee" class="form-control" id="datee"> <br>
 
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						Session start Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="time"
+							id="timee" class="form-control" name="timee">
 
-				Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="time"
-					id="timee" name="timee"> to
-				Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="time"
-					id="timee2" name="timee2"> <br>
-				<br>
+					</div>
+					<div class="form-group col-md-6">
+						Session end Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="time"
+							id="timee2" class="form-control" name="timee2"> <br>
+						<br>
 
-
-
-				<br>
-
-
-				<input id="btnSave" name="btnSave" type="button" value="Save"
-					class="btn btn-primary btn-lg btn-block"> <input
-					type="hidden" id="hidItemIDSave" name="hidItemIDSave" value="">
+					</div>
+				</div>
+				<br> <input id="btnSave" name="btnSave" type="button"
+					value="Save" class="btn btn-primary btn-lg btn-block"> <input
+					type="hidden" id="hidDocIDSave" name="hidDocIDSave" value="">
 
 				<div id="alertSuccess" class="alert alert-success"></div>
 				<div id="alertError" class="alert alert-danger"></div>
 
 			</form>
 		</fieldset>
-	<br>
-	<br>
-	<br>
+		<br> <br> <br>
 
 
 
-	
+
 
 
 
@@ -84,9 +82,9 @@
 						Doctor viewDoc = new Doctor();
 						out.print(viewDoc.readSession());
 					%>
-	
-	
-	
+
+
+
 				</form>
 			</fieldset>
 		</div>

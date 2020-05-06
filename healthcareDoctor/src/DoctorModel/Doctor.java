@@ -11,8 +11,9 @@ import com.sun.research.ws.wadl.Request;
 public class Doctor {
 	
 
-	
+//Database Connection---------------------------------------	
 	public Connection connect()
+
 	{
 		Connection con=null;
 		try
@@ -30,7 +31,12 @@ public class Doctor {
 		}
 		return con;
 	}
+	
+	
+	
+//Read sessions---------------------------------------------------	
 	public String readSession()
+
 	{
 		String output= "";
 		
@@ -41,7 +47,7 @@ public class Doctor {
 			{
 				return "error while connecting to the database for reading";
 			}
-//			output += "<<td><input id=\"hidItemIDUpdate\" name=\"hidItemIDUpdate\" type=\"hidden\" value=\"" + nic + "\">" + Name + "</td>"; 
+
 			output = "<table class='table'><tr><th></th><th>Date</th>"					
 					 +"<th>Doctor NIC</th>"
 					 +"<th>Doctor Name</th>"
@@ -52,8 +58,7 @@ public class Doctor {
 					 +"<th>Room number</th>"
 					 +"<th>Update</th>"
 					 +"<th>Delete</th>"+"</tr>";
-					 //+"<th>hospital</th></tr>";
-					// + "<th>Update</th><th>Remove</th></tr>"; 	
+						
 			
 			String  query="select * from doctor_portal order by session_id DESC ";
 			Statement stmtStatement=con.createStatement();
@@ -118,6 +123,9 @@ public class Doctor {
 		return output;	
 		
 	}
+	
+	
+	//Add sessions-------------------------------------------------
 	public String addSession(String nic,String name,String Specialization,String hospital,String room,String datee,String time,String time2)
 	{
 	String Output ="";
@@ -132,9 +140,7 @@ public class Doctor {
 
 		String query = " insert into doctor_portal (`doc_nic`,`doc_name`,`doc_specialization`,`doc_hospital`, `room_no`, `date`,`time`,`time2`) "
 				+ "values(?,?,?,?,?,?,?,?)";
-//		Date date = Calendar.getInstance().getTime();
-//		DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-//		String strDate = dateFormat.format(date);
+
 		
 		PreparedStatement preparedStmt = con.prepareStatement(query);
 	
@@ -154,14 +160,15 @@ public class Doctor {
 		String newDOC = readSession();
 		 Output = "{\"status\":\"success\", \"data\": \"" +newDOC + "\"}"; 
 	} catch (Exception e) {
-//		e.printStackTrace();
-//		System.out.println(" not inserted");
+
 		Output = "{\"status\":\"error\", \"data\":\"Error while inserting the item.\"}";
 				 System.err.println(e.getMessage()); 
 	}
 
 	return Output;
 }
+	
+	//Delete Sessions----------------------------------------------
 	public String deleteSession(String docNic)
 	{
 		String output="";
@@ -195,6 +202,8 @@ public class Doctor {
 		}
 		return output;
 	}
+	
+//Update Sessions--------------------------------------------------------------------
 	public String updateSession(String date,String name,String nic,String Specialization,String hospital,String timee,String timee2,String roomno, String docid )
 	{
 		String output="";
@@ -211,7 +220,7 @@ public class Doctor {
 					
 					PreparedStatement pStatement=connection.prepareStatement(query);
 					
-					//pStatement.setString(1, appointmentNum);
+				
 					
 					pStatement.setString(1, nic);
 					pStatement.setString(2, name);
@@ -230,7 +239,7 @@ public class Doctor {
 					output = "{\"status\":\"success\", \"data\": \"" +newDOC + "\"}"; 
 		}
 		catch (Exception e) {
-			// TODO: handle exception
+		
 			System.out.print("not updated");
 			output="error while updating the Doctor";
 			output = "{\"status\":\"error\", \"data\":\"Error while inserting the item.\"}";

@@ -19,28 +19,20 @@ public class DoctorApi extends HttpServlet {
 
 	Doctor docObj = new Doctor();
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
+	
 	public DoctorApi() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -51,7 +43,7 @@ public class DoctorApi extends HttpServlet {
 		response.getWriter().write(outputString);
 	}
 
-	// -----------------------------------------------------------------------------------------------------------
+	
 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -66,16 +58,14 @@ public class DoctorApi extends HttpServlet {
 				paras.get("timee").toString(),
 				paras.get("timee2").toString(),
 				paras.get("Room_No").toString(), 
-				paras.get("hidItemIDSave").toString()); 
+				paras.get("hidDocIDSave").toString()); 
 				
 
 		response.getWriter().write(outputString);
 
 	}
 
-	/**
-	 * @see HttpServlet#doDelete(HttpServletRequest, HttpServletResponse)
-	 */
+	
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub

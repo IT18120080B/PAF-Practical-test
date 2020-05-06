@@ -3,7 +3,7 @@ $(document).ready(function() {
 
 	$("#alertSuccess").hide();
 	$("#alertError").hide();
-	$("#hidItemIDSave").val("");
+	$("#hidDocIDSave").val("");
 	$("#DOC")[0].reset();
 });
 
@@ -22,7 +22,7 @@ $(document).on("click", "#btnSave", function(event) {
 		return;
 	}
 	// If valid------------------------
-	var type = ($("#hidItemIDSave").val() == "") ? "POST" : "PUT";
+	var type = ($("#hidDocIDSave").val() == "") ? "POST" : "PUT";
 
 	$.ajax({
 		url : "DoctorApi",
@@ -56,7 +56,7 @@ function onItemSaveComplete(response, status) {
 		$("#alertError").show();
 	}
 	
-	$("#hidItemIDSave").val("");
+	$("#hidDocIDSave").val("");
 	$("#DOC")[0].reset();
 }
 
@@ -95,7 +95,7 @@ function onItemDeleteComplete(response, status) {
 // UPDATE==========================================
 $(document).on("click",".btnUpdate",function(event)
 		{
-			$("#hidItemIDSave").val($(this).closest("tr").find('#hidItemIDUpdate').val());
+			$("#hidDocIDSave").val($(this).closest("tr").find('#hidItemIDUpdate').val());
 			$("#docNic").val($(this).closest("tr").find('td:eq(2)').text());
 			$("#docName").val($(this).closest("tr").find('td:eq(3)').text());
 			$("#specialization").val($(this).closest("tr").find('td:eq(4)').text());

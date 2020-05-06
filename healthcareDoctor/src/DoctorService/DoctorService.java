@@ -17,7 +17,7 @@ import org.jsoup.nodes.Document;
 public class DoctorService {
 	
 		Doctor docObj = new Doctor();
-		
+	//test services---------------------------------------------	
 		@GET
 		@Path("/test")
 		@Produces(MediaType.TEXT_HTML)
@@ -27,7 +27,7 @@ public class DoctorService {
 		 } 
 		
 		
-		
+	//Read Sessions-------------------------------------------------------------------	
 		@GET
 		@Path("/")
 		@Produces(MediaType.TEXT_HTML)
@@ -36,7 +36,7 @@ public class DoctorService {
 		 return docObj.readSession();
 		 }
 		
-		
+	//Insert Sessions-----------------------------------------------------
 		@POST
 		@Path("/")
 		@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -55,7 +55,7 @@ public class DoctorService {
 		return output;
 		}
 		
-		
+	//update session--------------------------------------------------------------	
 		@PUT
 		@Path("/")
 		@Consumes(MediaType.APPLICATION_JSON)
@@ -71,14 +71,15 @@ public class DoctorService {
 		 String datee = docObject.get("datee").getAsString();
 		 String time = docObject.get("time").getAsString();
 		 String time2 = docObject.get("time2").getAsString();
+		 String docid = docObject.get("docid").getAsString();
 		 String roomno = docObject.get("roomno").getAsString();
 		 String specialization = docObject.get("specialization").getAsString();
 		 
-		 String output = docObj.updateSession(nic,name,specialization,hospital,datee,time,time2,roomno);
+		 String output = docObj.updateSession( docid,nic,name,specialization,hospital,datee,time,time2,roomno);
 		return output;
 		}
 		
-		
+	//Delete Session----------------------------------------------
 		@DELETE
 		@Path("/")
 		@Consumes(MediaType.APPLICATION_XML)
