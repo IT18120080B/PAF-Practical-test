@@ -62,6 +62,7 @@ public class Doctor {
 			
 			while (rs.next())
 			{
+				String docid=rs.getString("session_id");
 				String datee=rs.getString("date");
 				String nic=rs.getString("doc_nic");
 				String name=rs.getString("doc_name");
@@ -75,7 +76,7 @@ public class Doctor {
 				
 			
 				
-				output += "<tr><td><input id='hidItemIDUpdate' name='hidItemIDUpdate' type='hidden' value=''"+ nic +"></td>";
+				output += "<tr><td><input id='hidItemIDUpdate' name='hidItemIDUpdate' type='hidden' value='"+ docid +"'></td>";
 				output += "<td>" + datee + "</td>";
 				output += "<td>" + nic + "</td>"; 
 				output += "<td>" + name + "</td>"; 
@@ -88,7 +89,7 @@ public class Doctor {
 				output += "<td><input name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary'</td>"
 						+ "<td><input name='btnRemove' type='button'"
 						+ "value='Remove' class='btnRemove btn btn-danger' data-docid='"
-						+ nic + "'>" + "</td></tr>"; 
+						+ docid + "'>" + "</td></tr>"; 
 						
 				
 				//-------------------------------------------------------
@@ -173,7 +174,7 @@ public class Doctor {
 				return "Error while connecting to the database for deleting.";
 			}
 			
-			String query="delete from doctor_portal where doc_nic=?";
+			String query="delete from doctor_portal where session_id=?";
 			
 			PreparedStatement prepareStmt=connection.prepareStatement(query);
 			
@@ -194,7 +195,7 @@ public class Doctor {
 		}
 		return output;
 	}
-	public String updateSession(String date,String name,String nic,String Specialization,String hospital,String timee,String timee2,String roomno)
+	public String updateSession(String date,String name,String nic,String Specialization,String hospital,String timee,String timee2,String roomno, String docid )
 	{
 		String output="";
 		
@@ -205,35 +206,22 @@ public class Doctor {
 				return "error while connecting to the database for updating";
 			}
 			
-			String query="UPDATE doctor_portal SET `doc_name =?`,`doc_specialization=?`,`doc_hospital=?`, `room_no=?`, `date=?`,`time=?`,`time2=?` "
-					+ "where doc_nic=?";
+			String query="UPDATE doctor_portal SET doc_nic=?,doc_name =?,doc_specialization=?,doc_hospital=?, room_no=?, date=?,time=?,time2=?"
+					+ "where session_id=?";
 					
 					PreparedStatement pStatement=connection.prepareStatement(query);
 					
 					//pStatement.setString(1, appointmentNum);
 					
-					pStatement.setString(1, name);
-					pStatement.setString(2, Specialization);
-					pStatement.setString(3, hospital);
-					pStatement.setInt(4, Integer.parseInt(roomno));
-					pStatement.setString(5, date);
-					pStatement.setString(6, timee);
-					pStatement.setString(7, timee2);
-					pStatement.setString(8, nic);	
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
+					pStatement.setString(1, nic);
+					pStatement.setString(2, name);
+					pStatement.setString(3, Specialization);
+					pStatement.setString(4, hospital);
+					pStatement.setInt(5, Integer.parseInt(roomno));
+					pStatement.setString(6, date);
+					pStatement.setString(7, timee);
+					pStatement.setString(8, timee2);
+					pStatement.setInt(9, Integer.parseInt(docid));				
 					pStatement.execute();
 					connection.close();
 					System.out.print("updated");

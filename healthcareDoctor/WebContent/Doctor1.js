@@ -47,13 +47,15 @@ function onItemSaveComplete(response, status) {
 			$("#alertError").text(resultSet.data);
 			$("#alertError").show();
 		}
-	} else if (status == "error") {
+	} 
+	else if (status == "error") {
 		$("#alertError").text("Error while saving.");
 		$("#alertError").show();
 	} else {
 		$("#alertError").text("Unknown error while saving..");
 		$("#alertError").show();
 	}
+	
 	$("#hidItemIDSave").val("");
 	$("#DOC")[0].reset();
 }
@@ -93,16 +95,15 @@ function onItemDeleteComplete(response, status) {
 // UPDATE==========================================
 $(document).on("click",".btnUpdate",function(event)
 		{
-			$("#hidUserIDUpdate").val(
-					$(this).closest("tr").find('#hidUserIDUpdate').val());
-			$("#docNic").val($(this).closest("tr").find('td:eq(1)').text());
-			$("#docName").val($(this).closest("tr").find('td:eq(2)').text());
-			$("#specialization").val($(this).closest("tr").find('td:eq(3)').text());
-			$("#Hosptial").val($(this).closest("tr").find('td:eq(4)').text());
-			$("#Room_No").val($(this).closest("tr").find('td:eq(7)').text());
-			$("#datee").val($(this).closest("tr").find('td:eq(0)').text());
-			$("#timee").val($(this).closest("tr").find('td:eq(5)').text());
-			$("#timee2").val($(this).closest("tr").find('td:eq(6)').text());
+			$("#hidItemIDSave").val($(this).closest("tr").find('#hidItemIDUpdate').val());
+			$("#docNic").val($(this).closest("tr").find('td:eq(2)').text());
+			$("#docName").val($(this).closest("tr").find('td:eq(3)').text());
+			$("#specialization").val($(this).closest("tr").find('td:eq(4)').text());
+			$("#Hospital").val($(this).closest("tr").find('td:eq(5)').text());
+			$("#Room_No").val($(this).closest("tr").find('td:eq(8)').text());
+			$("#datee").val($(this).closest("tr").find('td:eq(1)').text());
+			$("#timee").val($(this).closest("tr").find('td:eq(6)').text());
+			$("#timee2").val($(this).closest("tr").find('td:eq(7)').text());
 		
 		});
 // CLIENTMODEL=========================================================================

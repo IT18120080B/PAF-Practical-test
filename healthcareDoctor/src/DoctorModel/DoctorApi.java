@@ -57,11 +57,17 @@ public class DoctorApi extends HttpServlet {
 			throws ServletException, IOException {
 		Map paras = getParasMap(request);
 
-		String outputString = docObj.updateSession(paras.get("hidUsersIDSave").toString(),
-//				 paras.get("nic").toString(),
-				paras.get("docName").toString(), paras.get("specialization").toString(), paras.get("Hosptial").toString(),
-				paras.get("Room_No").toString(), paras.get("datee").toString(), paras.get("timee").toString(),
-				paras.get("timee2").toString());
+		String outputString = docObj.updateSession(
+				paras.get("datee").toString(),
+				paras.get("docName").toString(),
+				paras.get("docNic").toString(), 
+				paras.get("specialization").toString(), 
+				paras.get("Hosptial").toString(),
+				paras.get("timee").toString(),
+				paras.get("timee2").toString(),
+				paras.get("Room_No").toString(), 
+				paras.get("hidItemIDSave").toString()); 
+				
 
 		response.getWriter().write(outputString);
 
