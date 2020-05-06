@@ -25,63 +25,58 @@
 		<fieldset>
 
 			<legend>Add Sessions</legend>
-			<form method="post" id="DOC"action="Doctor.jsp">
+			<form method="post" id="DOC">
 
 
 				Doctor NIC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input id="docNic"
 					type="text" class="form-control" name="docNic"> <br>
-					
-				Doctor Doctor Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-					type="text" id="docName" class="form-control" name="docName">
-				 <br> Doctor
-				Specialization&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
+
+				Doctor Doctor Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="text" id="docName" class="form-control" name="docName">
+				<br>
+				Doctor Specialization&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
 					type="text" id="specialization" class="form-control"
 					name="specialization"> <br>
-					Hospital &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-							name="Hosptial" id ="Hospital"class="form-control">
-							
-				<br> Room No&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-				name="Room_No" id="Room_No" class="form-control">
+				Hospital &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input name="Hosptial"
+					id="Hospital" class="form-control"> <br>
+				Room No&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input name="Room_No"
+					id="Room_No" class="form-control"> <br>
+				Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="date"
+					name="datee" class="form-control" id="datee"> <br>
 
 
-				<br> Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-					type="date" name="datee" class="form-control" id="datee" >
-					<br>
-				
-				
-				Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="time" id="timee"
-					name="timee"> 
-					
-					to Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-					type="time" id ="timee2" name="timee2"> <br> <br>
-			
+				Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="time"
+					id="timee" name="timee"> to
+				Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="time"
+					id="timee2" name="timee2"> <br>
+				<br>
 
 
-					<br>
-				
-					
-				<input id="btnSave" name="btnSave" type="button" value="Save" class="btn btn-primary btn-lg btn-block">
 
-				<input type="hidden" id="hidItemIDSave" name="hidItemIDSave" value="">
-				
+				<br>
+
+
+				<input id="btnSave" name="btnSave" type="button" value="Save"
+					class="btn btn-primary btn-lg btn-block"> <input
+					type="hidden" id="hidItemIDSave" name="hidItemIDSave" value="">
+
 				<div id="alertSuccess" class="alert alert-success"></div>
- 				<div id="alertError" class="alert alert-danger"></div>
+				<div id="alertError" class="alert alert-danger"></div>
 
-					
-						
-				</div>
 			</form>
 		</fieldset>
-		<br> <br> <br>
-		
-		
+	<br>
+	<br>
+	<br>
 
-</div>
-		
-		
-		
 
-		<div class="container" id = "DoctorGrid">
+
+	
+
+
+
+
+		<div class="container" id="DoctorGrid">
 			<fieldset>
 				<legend>View session</legend>
 				<form method="post" action="Doctor.jsp">
@@ -89,9 +84,9 @@
 						Doctor viewDoc = new Doctor();
 						out.print(viewDoc.readSession());
 					%>
-
-
-
+	
+	
+	
 				</form>
 			</fieldset>
 		</div>

@@ -3,9 +3,12 @@ $(document).ready(function() {
 
 	$("#alertSuccess").hide();
 	$("#alertError").hide();
+	$("#hidItemIDSave").val("");
+	$("#DOC")[0].reset();
 });
 
-$(document).on("click", "#submitusers", function(event) {
+$(document).on("click", "#btnSave", function(event) {
+
 	// Clear alerts---------------------
 	$("#alertSuccess").text("");
 	$("#alertSuccess").hide();
@@ -19,7 +22,7 @@ $(document).on("click", "#submitusers", function(event) {
 		return;
 	}
 	// If valid------------------------
-	var type = ($("#hidUsersIDSave").val() == "") ? "POST" : "PUT";
+	var type = ($("#hidItemIDSave").val() == "") ? "POST" : "PUT";
 
 	$.ajax({
 		url : "DoctorApi",
@@ -59,7 +62,7 @@ $(document).on("click", ".btnRemove", function(event) {
 	$.ajax({
 		url : "DoctorApi",
 		type : "DELETE",
-		data : "did=" + $(this).data("itemid"),
+		data : "nic=" + $(this).data("docid"),
 		dataType : "text",
 		complete : function(response, status) {
 			onItemDeleteComplete(response.responseText, status);
@@ -118,7 +121,7 @@ function validateItemForm() {
 	}
 
 	// hospital
-	if ($("#Hosptial").val().trim() == "") {
+	if ($("#Hospital").val().trim() == "") {
 		return "Insert Hospital Name.";
 	}
 	//Room number

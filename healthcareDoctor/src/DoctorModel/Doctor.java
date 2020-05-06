@@ -30,6 +30,93 @@ public class Doctor {
 		}
 		return con;
 	}
+	public String readSession()
+	{
+		String output= "";
+		
+		try {
+			Connection con=connect();
+			
+			if(con==null)
+			{
+				return "error while connecting to the database for reading";
+			}
+//			output += "<<td><input id=\"hidItemIDUpdate\" name=\"hidItemIDUpdate\" type=\"hidden\" value=\"" + nic + "\">" + Name + "</td>"; 
+			output = "<table class='table'><tr><th></th><th>Date</th>"					
+					 +"<th>Doctor NIC</th>"
+					 +"<th>Doctor Name</th>"
+					 +"<th>Specialization</th>"
+					 + "<th>Hospital</th>"
+					 +"<th>Start Time</th>"
+					 +"<th>End Time</th>"
+					 +"<th>Room number</th>"
+					 +"<th>Update</th>"
+					 +"<th>Delete</th>"+"</tr>";
+					 //+"<th>hospital</th></tr>";
+					// + "<th>Update</th><th>Remove</th></tr>"; 	
+			
+			String  query="select * from doctor_portal order by session_id DESC ";
+			Statement stmtStatement=con.createStatement();
+			ResultSet rs=stmtStatement.executeQuery(query);
+			
+			
+			while (rs.next())
+			{
+				String datee=rs.getString("date");
+				String nic=rs.getString("doc_nic");
+				String name=rs.getString("doc_name");
+				String Specialization=rs.getString("doc_specialization");
+				String hospital=rs.getString("doc_hospital");
+				String stime=rs.getString("time");
+				String etime=rs.getString("time2");
+				String roomno=Integer.toString(rs.getInt("room_no"));
+				
+				
+				
+			
+				
+				output += "<tr><td><input id='hidItemIDUpdate' name='hidItemIDUpdate' type='hidden' value=''"+ nic +"></td>";
+				output += "<td>" + datee + "</td>";
+				output += "<td>" + nic + "</td>"; 
+				output += "<td>" + name + "</td>"; 
+				output += "<td>" + Specialization + "</td>"; 
+				output += "<td>" + hospital + "</td>"; 
+				output += "<td>" + stime + "</td>"; 
+				output += "<td>" + etime + "</td>"; 
+				output += "<td>" + roomno + "</td>"; 
+				
+				output += "<td><input name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary'</td>"
+						+ "<td><input name='btnRemove' type='button'"
+						+ "value='Remove' class='btnRemove btn btn-danger' data-docid='"
+						+ nic + "'>" + "</td></tr>"; 
+						
+				
+				//-------------------------------------------------------
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+			}
+			con.close();
+			
+			output+="</table>";
+			System.out.println("table can be view");
+		}
+		catch(Exception e)
+		{
+			output="error while reading the appointment";
+			System.err.println(e.getMessage());
+			System.out.println("table can't be view");
+		}
+		return output;	
+		
+	}
 	public String addSession(String nic,String name,String Specialization,String hospital,String room,String datee,String time,String time2)
 	{
 	String Output ="";
@@ -62,10 +149,14 @@ public class Doctor {
 		preparedStmt.execute();
 		con.close();
 		System.out.println("inserted");
-		Output = "Inserted successfully"; 
+		Output = "Inserted successfully";
+		String newDOC = readSession();
+		 Output = "{\"status\":\"success\", \"data\": \"" +newDOC + "\"}"; 
 	} catch (Exception e) {
-		e.printStackTrace();
-		System.out.println(" not inserted");
+//		e.printStackTrace();
+//		System.out.println(" not inserted");
+		Output = "{\"status\":\"error\", \"data\":\"Error while inserting the item.\"}";
+				 System.err.println(e.getMessage()); 
 	}
 
 	return Output;
@@ -91,11 +182,15 @@ public class Doctor {
 			connection.close();
 			
 			output= "deleted successfully";
+			String newDOC = readSession();
+			output = "{\"status\":\"success\", \"data\": \"" +newDOC + "\"}"; 
 		}
 		catch(Exception e)
 		{
 			output="error while deleting the Doctor";
-			System.err.println(e.getMessage());
+			output = "{\"status\":\"error\", \"data\":\"Error while inserting the item.\"}";
+			 System.err.println(e.getMessage());
+		
 		}
 		return output;
 	}
@@ -143,102 +238,19 @@ public class Doctor {
 					connection.close();
 					System.out.print("updated");
 					output="updated successfully";
+					String newDOC = readSession();
+					output = "{\"status\":\"success\", \"data\": \"" +newDOC + "\"}"; 
 		}
 		catch (Exception e) {
 			// TODO: handle exception
 			System.out.print("not updated");
 			output="error while updating the Doctor";
-			System.err.println(e.getMessage());
+			output = "{\"status\":\"error\", \"data\":\"Error while inserting the item.\"}";
+			 System.err.println(e.getMessage());
 		}
 		return output;
 	}
-	public String readSession()
-	{
-		String output= "";
-		
-		try {
-			Connection con=connect();
-			
-			if(con==null)
-			{
-				return "error while connecting to the database for reading";
-			}
-//			output += "<<td><input id=\"hidItemIDUpdate\" name=\"hidItemIDUpdate\" type=\"hidden\" value=\"" + nic + "\">" + Name + "</td>"; 
-			output = "<table class=\"table\"><tr><th></th><th>Date</th>"					
-					 +"<th>Doctor NIC</th>"
-					 +"<th>Doctor Name</th>"
-					 +"<th>Specialization</th>"
-					 + "<th>Hospital</th>"
-					 +"<th>Start Time</th>"
-					 +"<th>End Time</th>"
-					 +"<th>Room number</th>"
-					 +"<th>Update</th>"
-					 +"<th>Delete</th>"+"</tr>";
-					 //+"<th>hospital</th></tr>";
-					// + "<th>Update</th><th>Remove</th></tr>"; 	
-			
-			String  query="select * from doctor_portal order by session_id DESC ";
-			Statement stmtStatement=con.createStatement();
-			ResultSet rs=stmtStatement.executeQuery(query);
-			
-			
-			while (rs.next())
-			{
-				String datee=rs.getString("date");
-				String nic=rs.getString("doc_nic");
-				String name=rs.getString("doc_name");
-				String Specialization=rs.getString("doc_specialization");
-				String hospital=rs.getString("doc_hospital");
-				String stime=rs.getString("time");
-				String etime=rs.getString("time2");
-				String roomno=Integer.toString(rs.getInt("room_no"));
-				
-				
-				
-			
-				
-				output += "<tr><td><input id=\"hidItemIDUpdate\" name=\"hidItemIDUpdate\" type=\"hidden\" value=\"" + nic + "\"></td>";
-				output += "<td>" + datee + "</td>";
-				output += "<td>" + nic + "</td>"; 
-				output += "<td>" + name + "</td>"; 
-				output += "<td>" + Specialization + "</td>"; 
-				output += "<td>" + hospital + "</td>"; 
-				output += "<td>" + stime + "</td>"; 
-				output += "<td>" + etime + "</td>"; 
-				output += "<td>" + roomno + "</td>"; 
-				
-				output += "<td><input name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary'</td>"
-						+ "<td><input name='btnRemove' type='button'"
-						+ "value='Remove' class='btnRemove btn btn-danger' data-itemid='"
-						+ nic + "'>" + "</td></tr>"; 
-						
-				
-				//-------------------------------------------------------
-				
-			
-				
-				
-				
-				
-				
-				
-				
-				
-			}
-			con.close();
-			
-			output+="</table>";
-			System.out.println("table can be view");
-		}
-		catch(Exception e)
-		{
-			output="error while reading the appointment";
-			System.err.println(e.getMessage());
-			System.out.println("table can't be view");
-		}
-		return output;	
-		
-	}
+	
 	
 	
 
