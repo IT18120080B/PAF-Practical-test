@@ -72,8 +72,9 @@ public class DoctorService {
 		 String time = docObject.get("time").getAsString();
 		 String time2 = docObject.get("time2").getAsString();
 		 String roomno = docObject.get("roomno").getAsString();
+		 String specialization = docObject.get("specialization").getAsString();
 		 
-		 String output = docObj.updateSession(nic,name,hospital,datee,time,time2,roomno);
+		 String output = docObj.updateSession(nic,name,specialization,hospital,datee,time,time2,roomno);
 		return output;
 		}
 		

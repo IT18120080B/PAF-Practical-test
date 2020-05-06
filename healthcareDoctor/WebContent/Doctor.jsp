@@ -23,10 +23,11 @@
 	else{
 		Doctor update = new Doctor();
 		//app.connect();
-		String stsMsg = update.updateSession(request.getParameter("hidItemIDSave"), request.getParameter("docName"),
-				request.getParameter("Hosptial"), request.getParameter("Room_No"),
-				request.getParameter("timee"), request.getParameter("timee2"),
-				request.getParameter("datee"));
+		String stsMsg = update.updateSession(request.getParameter("hidItemIDSave"),request.getParameter("datee"), 
+				request.getParameter("docName"),request.getParameter("Specialization"),
+				request.getParameter("Hosptial"), request.getParameter("timee"),
+				 request.getParameter("timee2"),request.getParameter("Room_No"));
+				
 		session.setAttribute("statusMsg", stsMsg);
 		//response.sendRedirect("patient.jsp");
 		

@@ -99,7 +99,7 @@ public class Doctor {
 		}
 		return output;
 	}
-	public String updateSession(String date,String nic,String name,String hospital,String timee,String timee2,String roomno)
+	public String updateSession(String date,String name,String nic,String Specialization,String hospital,String timee,String timee2,String roomno)
 	{
 		String output="";
 		
@@ -110,19 +110,30 @@ public class Doctor {
 				return "error while connecting to the database for updating";
 			}
 			
-			String query="UPDATE doctor_portal SET date=?,doc_hospital=?,time=?,time2=?,room_no=? "
+			String query="UPDATE doctor_portal SET `doc_name =?`,`doc_specialization=?`,`doc_hospital=?`, `room_no=?`, `date=?`,`time=?`,`time2=?` "
 					+ "where doc_nic=?";
 					
 					PreparedStatement pStatement=connection.prepareStatement(query);
 					
 					//pStatement.setString(1, appointmentNum);
 					
-					pStatement.setString(1, date);
-					pStatement.setString(2, hospital);
-					pStatement.setString(3, timee);
-					pStatement.setString(4, timee2);
-					pStatement.setInt(5, Integer.parseInt(roomno));
-					pStatement.setString(6, nic);
+					pStatement.setString(1, name);
+					pStatement.setString(2, Specialization);
+					pStatement.setString(3, hospital);
+					pStatement.setInt(4, Integer.parseInt(roomno));
+					pStatement.setString(5, date);
+					pStatement.setString(6, timee);
+					pStatement.setString(7, timee2);
+					pStatement.setString(8, nic);	
+					
+					
+					
+					
+					
+					
+					
+					
+					
 					
 					
 					
@@ -195,7 +206,7 @@ public class Doctor {
 				output += "<td>" + stime + "</td>"; 
 				output += "<td>" + etime + "</td>"; 
 				output += "<td>" + roomno + "</td>"; 
-				output += "<td><input name=\"btnUpdate\" type=\"button\" value=\"Update\" class=\"btnUpdate btn btn-secondary\"></td>";	
+				output += "<td><input name=\"btnUpdate\" id=\"btnUpdate\" type=\"button\" value=\"Update\" class=\"btnUpdate btn btn-secondary\"></td>";	
 				output += "<td><form method=\"post\" action=\"Doctor.jsp\">"
 				 +"<input name=\"btnRemove\" type=\"submit\" value=\"Remove\" class=\"btn btn-danger\">"
 				 +"<input name=\"hidItemIDDelete\" type=\"hidden\" value=\"" + nic + "\">" + "</form></td></tr>"; 
