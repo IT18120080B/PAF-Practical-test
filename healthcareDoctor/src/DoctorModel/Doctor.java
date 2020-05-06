@@ -206,10 +206,12 @@ public class Doctor {
 				output += "<td>" + stime + "</td>"; 
 				output += "<td>" + etime + "</td>"; 
 				output += "<td>" + roomno + "</td>"; 
-				output += "<td><input name=\"btnUpdate\" id=\"btnUpdate\" type=\"button\" value=\"Update\" class=\"btnUpdate btn btn-secondary\"></td>";	
-				output += "<td><form method=\"post\" action=\"Doctor.jsp\">"
-				 +"<input name=\"btnRemove\" type=\"submit\" value=\"Remove\" class=\"btn btn-danger\">"
-				 +"<input name=\"hidItemIDDelete\" type=\"hidden\" value=\"" + nic + "\">" + "</form></td></tr>"; 
+				
+				output += "<td><input name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary'</td>"
+						+ "<td><input name='btnRemove' type='button'"
+						+ "value='Remove' class='btnRemove btn btn-danger' data-itemid='"
+						+ nic + "'>" + "</td></tr>"; 
+						
 				
 				//-------------------------------------------------------
 				
